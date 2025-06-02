@@ -4,6 +4,7 @@ import signup from './users/signup.js'
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import login from './users/login.js';
+import chatroutes from './chat/routes.js';
 const app = express()
 const port = 3000
 import cors from 'cors'
@@ -20,11 +21,13 @@ const io = new Server(httpServer, {
 app.use(cors())
 app.use(bodyParser.json())
 app.use(express.json());
-
+app.use(express.static('chat'));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 app.use('/api', signup(io),express.static('public'))
 app.use('/api', login(io, onlineUsers),express.static('public'))
+// app.use('/api', login(io, onlineUsers),express.static('public'))
+app.use('/api', chatroutes,express.static('chat'));
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
