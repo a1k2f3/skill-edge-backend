@@ -95,6 +95,11 @@ const upload = multer({ storage });
 router.put("/updateaccount/:id", upload.single("image"), async (req, res) => {
   try {
     const { username, email, password, role} = req.body;
+    const { id } = req.params;
+  // Validate ID format
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ success: false, message: "Invalid account ID." });
+  }
     const file = req.file;
     const updateData = {
       ...(username && { username }),
