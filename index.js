@@ -21,12 +21,11 @@ const io = new Server(httpServer, {
 app.use(cors())
 app.use(bodyParser.json())
 app.use(express.json());
-app.use(express.static('chat'));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 app.use('/api', signup(io),express.static('public'))
 app.use('/api', login(io, onlineUsers),express.static('public'))
-// app.use('/api', login(io, onlineUsers),express.static('public'))
+
 app.use('/api', chatroutes,express.static('chat'));
 app.get('/', (req, res) => {
   res.send('Hello World!')

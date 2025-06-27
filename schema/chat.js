@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Accounts from "./user.js"; // Adjust the path as per your project structure
+import Accounts from "./REGISTER.js"; // Adjust the path as per your project structure
 const messageSchema = new mongoose.Schema({
     senderId: {
         type: mongoose.Schema.Types.ObjectId,

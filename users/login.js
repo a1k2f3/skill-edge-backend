@@ -11,7 +11,6 @@ import path from "path";
 import fs from "fs";; // Adjust the import path as needed
 const router = express.Router();
 export default(io,onlineUsers)=>{
-  const pendinglogin = new Map(); 
 router.post("/login", async (req, res) => {
   try { 
     const { email,password } = req.body;
